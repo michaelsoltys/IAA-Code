@@ -7,8 +7,7 @@ def div(x,y):
     
     #check pre-condition
     if x<0 or y<=0 or x!=int(x) or y!=int(y):
-        print('invalid input')
-        return None
+        raise ValueError('Invalid inputs for division.')
     
     #division algorithm
     q = 0
