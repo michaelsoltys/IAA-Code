@@ -1,0 +1,67 @@
+\documentclass{article}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Problem 1.1 Sample}
+\rhead{An introduction to the analysis of algorithms}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newtheorem{inner}{Problem}
+\newenvironment{prb}[1]
+	{\renewcommand\theinner{#1}\inner}
+	{\endinner}
+
+\begin{document}
+
+Let $O=A(I)$ be the output of $A$ on $I$, if it exists.
+Let $\alpha_A$ be a pre-condition and $\beta_A$ a post-condition of A;
+if $I$ satisfies the pre-condition we write $\alpha_A(I)$ and
+if $O$ satisfies the post-condition we write $\beta_A(O)$.
+Then, partial correctness of $A$ with respect to pre-condition
+$\alpha_A$ and post-condition $\beta_A$ can be stated as:
+
+\begin{equation}\label{eq1}
+	(\forall I\in\mathcal{I}_A)
+	[(\alpha_A(I)\wedge\exists O(O=A(I)))\rightarrow\beta_A(A(I))]
+\end{equation}
+
+\noindent which in words states the following: for any well formed 
+input $I$, if $I$ satisfies the pre-condition and $A(I)$ terminates
+or produces an output, i.e. $\exists O(O=A(I))$, then this output
+satisfies the post-condition. Full correctness is (\ref{eq1})
+together with the assertion that for all $I\in\mathcal{I}_A$, $A(I)$
+terminates (and hence there exists an $O$ such that $O=A(I)$).
+
+\begin{prb}{1.1}
+Modify (\ref{eq1}) to express full correctness.
+\end{prb}
+
+\noindent {\bf Solution:}\break
+We already have a full expression of partial correctness in $\ref{eq1}$.
+We know that full correctness combines partial correctness with the
+assertion that the algorithm is guaranteed to terminate. This assertion
+is identical to:
+
+\begin{equation}\label{eq2}
+\forall I\in\mathcal{I}_A(\exists O(O=A(I)))
+\end{equation}
+
+Partial correctness guarantees that if $A$ is given a well-formed input
+$I$ meeting the pre-condition $\alpha_A$ and terminates with result 
+$O=A(I)$, then $O$ meets the post-condition $\beta_A$. Full correctness
+then adds the guarantee of termination (i.e. the guarantee that $A$ will
+terminate when given a well-formed input, producing result $O$). The result
+is that $A$, when given any well-formed input $I\in\mathcal{I}_A$, will
+terminate with result $O$, and moreover that if $I$ meets the pre-conditions
+(i.e. if $\alpha_A(I)$) then $O$ will meet the post-conditions ($\beta_A(O)$).
+This can all be written succinctly in a single equation, similar to 
+(\ref{eq1}):
+
+\begin{equation}\label{eq3}
+	(\forall I\in\mathcal{I}_A)
+	[\exists O(O=A(I))\wedge(\alpha_A(I)\rightarrow\beta_A(A(I)))]
+\end{equation}
+
+\end{document}
