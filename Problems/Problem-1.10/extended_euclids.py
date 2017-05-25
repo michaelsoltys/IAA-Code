@@ -37,16 +37,46 @@ def ext_euc(m,n):
         
 #--------------------------------------------------------------------Experiment
         
+def ext_euc_step_count(m,n):
+    
+    steps = 4 #4 checks above
+    if m<=0 or n<=0 or m!=int(m) or n!=int(n):
+        raise ValueError("Invalid inputs for Euclid's.")
+        
+    c = m
+    d = n
+    a = 0
+    x = 1
+    b = 1
+    y = 0
+    steps += 6 #6 assignments above
+    while(True):
+        q = int(c/d) 
+        r = c%d
+        steps += 4 
+        #2 assignments above, r==0 check below, 1 divsion (treating c%d as a by-product of the division)
+        if r == 0:
+            return steps            
+        c = d
+        d = r
+        h = x
+        x = a
+        a = h - q * a
+        h = y
+        y = b
+        b = h - q * b
+        steps += 12 #8 assignments, 2 multiplications, 2 subtractions above
+
 '''
 In order to count the number of "steps" in the algorithm above,
 it is necessary to choose an embed a method of division. It seems
-fitting to use the division defined in Algorithm 1.2. You'll see that
+fitting to use the division defined in Algorithm 1.1. You'll see that
 it has been inserted, along with the variable "steps", which serves as
 a step counter.
 '''
 
 #algorithm, with division and step counter
-def ext_euc_step_count(m,n):
+def ext_euc_step_count_with_division(m,n):
     
     if m<=0 or n<=0 or m!=int(m) or n!=int(n):
         raise ValueError("Invalid inputs for Euclid's.")
@@ -85,14 +115,14 @@ Next, we gather some data. We'll fix m's size, and vary n<m randomly.
 
 data = dict()
 size = 1
+sample_size = 1000000
 while size < 50:
     sample = 0
-    sample_size = 1000000
     sample_total = 0
     while sample < sample_size:
         m = randint(2**(size-1),(2**size)-1)
         n = randint(1,m)
-        sample_total += ext_euc_step_count(m,n)
+        sample_total += ext_euc_step_count_with_division(m,n)
         sample += 1
     data[size] = sample_total/sample_size
     size += 1
@@ -114,10 +144,6 @@ ax.set_ylabel('number of steps')
 fig.suptitle('Complexity of Extended Euclid\'s')
 
 #plot data
-ax.plot(X,Y)
+ax.plot(X,Y,'o')
 
-#plot lazy linear guess, from (0,1) to (50,1800)
-ax.plot([4,50],[1,2000],'c--')
-
-#save figure
-fig.savefig('results.png')
+fig.savefig('results_steps_with_division.png') #save figure, if uncommented
