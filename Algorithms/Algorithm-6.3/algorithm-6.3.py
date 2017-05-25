@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Dec 14 19:42:35 2016
-
-@author: arewh
+@author: Ryan McIntyre
 """
 from random import choice
 from copy import copy
