@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Introduction to the Analysis of Algorithms (3rd ed)
 # Michael Soltys
 ## Implementation of Algorithm 6.3
@@ -5,6 +6,19 @@
 ## 12/12/2016
 ## python 3.5.2
 
+||||||| merged common ancestors
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Dec 14 19:42:35 2016
+
+@author: arewh
+"""
+=======
+# -*- coding: utf-8 -*-
+"""
+@author: Ryan McIntyre
+"""
+>>>>>>> 699c74fff42380771cfc874ae09a4e75bf33a479
 from random import choice
 from copy import copy
 
