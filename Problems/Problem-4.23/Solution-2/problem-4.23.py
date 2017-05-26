@@ -7,6 +7,12 @@ MATH 354 Algorithms
 Assignment 5
 11/10/16
 """
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Solution to problem 4.23
+## Luke LaFountaine, Carlos A. Gomez
+## 11/10/2016
+## python 3
 
 import sys
 from collections import namedtuple

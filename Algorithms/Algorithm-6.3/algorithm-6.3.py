@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 14 19:42:35 2016
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Implementation of Algorithm 6.3
+## Ryan McIntyre
+## 12/12/2016
+## python 3.5.2
 
-@author: arewh
-"""
 from random import choice
 from copy import copy
 

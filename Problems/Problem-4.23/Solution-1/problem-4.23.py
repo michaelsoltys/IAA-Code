@@ -1,10 +1,9 @@
-"""
-Authors: Timothy Indrieri,Brandon Artner, Edward Morkunas
-
-Assignment 5 
-COMP/Math354 354 
-November 9 2016
-"""
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Solution to problem 4.23
+## Timothy Indrieri,Brandon Artner, Edward Morkunas
+## 11/09/2016
+## python 3
 
 from ast import literal_eval
 

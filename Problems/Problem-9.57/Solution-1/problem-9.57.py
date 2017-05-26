@@ -1,9 +1,10 @@
-'''
-Created on Mar 15, 2015
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Solution to problem 9.57
+## Andrew Trow
+## 3/15/2015
+## python 3
 
-@author: Andrew Trow
-Comp554 HW3 Problem 3.13
-'''
 import sys
 import csv
 

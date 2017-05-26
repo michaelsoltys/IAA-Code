@@ -1,8 +1,12 @@
-## Author: Joel Helling
-## Date: 3/9/2015
-## Using python 3.4
-## 2.34: The current algorithm reduces a text files by ~45%, while windows zip utility
-##       can reduce the same file ~65%
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Problem 2.35 Sample Solution
+## Joel Helling
+## 3/9/2015
+## python 3.4
+
+## The current algorithm reduces a text files by ~45%, while windows zip utility
+## can reduce the same file ~65%
 
 import sys
 import array

@@ -1,7 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-@author: Ryan McIntyre
-"""
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Sample code for Problem 1.10
+## Ryan McIntyre
+## 5/25/2017
+## python 3.5.2
 
 from random import randint
 import matplotlib.pyplot as plt

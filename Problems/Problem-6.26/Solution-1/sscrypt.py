@@ -1,3 +1,9 @@
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Solution to problem 6.26
+## Qingwen Zhu
+## python 3
+
 __author__ = 'Qingwen Zhu'
 
 import sys;

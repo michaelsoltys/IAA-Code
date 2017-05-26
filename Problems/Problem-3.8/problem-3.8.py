@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov  3 14:34:13 2016
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Solution to problem 3.8
+## Ryan McIntyre
+## 11/03/2016
+## python 3.5.2
 
-@author: arewh
-"""
 from math import floor
 from collections import deque
 

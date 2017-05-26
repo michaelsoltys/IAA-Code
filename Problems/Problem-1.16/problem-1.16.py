@@ -1,4 +1,4 @@
-# Introduction to the Analysis of Algorithms
+# Introduction to the Analysis of Algorithms (2nd ed)
 # Michael Soltys
 # Solution to problem 1.25
 # February 20, 2015

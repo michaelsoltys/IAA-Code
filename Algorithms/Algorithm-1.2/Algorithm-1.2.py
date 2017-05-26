@@ -1,7 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-@author: Ryan McIntyre
-"""
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Implementation of Algorithm 1.2
+## Ryan McIntyre
+## 5/25/2017
+## python 3.5.2
 
 def euc(a,b):
     

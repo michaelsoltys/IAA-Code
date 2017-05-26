@@ -1,7 +1,9 @@
-
-# Matthew Morales
-# COMP 554
-# Spring 2015
+# Introduction to the Analysis of Algorithms (3rd ed)
+# Michael Soltys
+## Solution to problem 6.26
+## Matthew Morales
+## Spring 2015
+## python 3
 
 import random
 import sys
