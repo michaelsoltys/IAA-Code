@@ -10,16 +10,16 @@ from copy import copy
 import sys
 
 #input location of .txt with link matrix. txt should be a square of 1's and 0's
-def PageRank(input_network, d=fr(17,20), iter_limit=1000, p=.0001):
-    '''p is proportional difference threshold between iterations
+def PageRank(input_network, d=fr(17,20), iter_limit=1000, p=1000000000):
+    '''1/p is proportional difference threshold between iterations
     i.e. |old-new|/old. iteration stops when iter_limit is reached
-    or the largest proportional difference is less than p.'''
+    or the largest proportional difference is less than 1/p.'''
     
     #First we check out input, make sure it's well-formed
     if d<=0 or d>1:
         raise ValueError('invalid value "'+str(d)+'" for d; must be in (0,1]')
-    if p<=0 or p>1:
-        raise ValueError('invalid value "'+str(p)+'" for p; must be in (0,1]')
+    if p!=int(p) or p<1:
+        raise ValueError(p,'must be a natural number (ideally a large one).')
     net = open(input_network,'r').read().splitlines()
     n = len(net)
     if any([len(row)!=n or any([char!='1' and char!='0' for char in row]) for row in net]):
@@ -45,14 +45,16 @@ def PageRank(input_network, d=fr(17,20), iter_limit=1000, p=.0001):
         ])
         if p==0 and new==old:
             break
-        elif all([ abs(float((old[i]-new[i])/old[i])) < p for i in range(n) ]):
+        elif all([ abs((old[i]-new[i])/old[i]) < fr(1,p) for i in range(n) ]):
             break
         old = copy(new)
         i += 1
     if i==iter_limit:
         print('Warning: iter_limit reached. Series did not converge.')
+    else:
+        print('Iteration count:',i)
     for i in range(n):
-        print('PR('+str(i)+') = '+str(float(new[i])))
+        print('PR('+str(i)+') = '+str(round(float(new[i]),4)))
     return new
 
 #We can run from the command line.
