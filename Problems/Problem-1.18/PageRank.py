@@ -7,6 +7,7 @@
 
 from fractions import Fraction as fr
 from copy import copy
+import sys
 
 #input location of .txt with link matrix. txt should be a square of 1's and 0's
 def PageRank(input_network, d=fr(17,20), iter_limit=1000, p=.01):
@@ -46,4 +47,14 @@ def PageRank(input_network, d=fr(17,20), iter_limit=1000, p=.01):
         print('PR('+str(i)+') = '+str(float(new[i])))
     return new
     
-PageRank('input.txt')
+if __name__ == "__main__":
+    if len(sys.argv)>5:
+        raise AttributeError('Too many inputs for PageRank.')
+    elif len(sys.argv)<2:
+        raise AttributeError('PageRank requires an input network.')
+    else:
+        arg = "PageRank('"+sys.argv[1]+"'"
+        if len(sys.argv)>2:
+            arg += ', '+', '.join(sys.argv[2:])
+        arg += ')'
+        eval(arg)
