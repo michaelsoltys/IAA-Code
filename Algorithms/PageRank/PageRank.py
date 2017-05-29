@@ -57,8 +57,6 @@ def PageRank(input_network, d=fr(17,20), iter_limit=1000, p=1000000000):
         print('PR('+str(i)+') = '+str(round(float(new[i]),4)))
     return new
 
-#We can run from the command line.
-#ex: python some_directory/PageRank.py a_directory/input.txt d=some_number
 if __name__ == "__main__":
     if len(sys.argv)>5:
         raise AttributeError('Too many inputs for PageRank.')

@@ -10,3 +10,5 @@ preferences on group 1.
 
 For example, if n is 3, the first row could be [0,1,2], and there
 should be 6 total rows in the input.
+
+Output is stable matching of the two groups.

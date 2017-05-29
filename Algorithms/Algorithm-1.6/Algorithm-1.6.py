@@ -23,10 +23,10 @@ def ulam(a):
     x.get_next()
     i += 2
     #once the last is 4, the next two will be 2, 1.
-    print('Iterations:',i)
-    if i<100:
-        print('Sequence:',x.list)
-    return(i)#we don't necessarily need any return, but why not
+    print('Iterations for',str(a)+':',i)
+    if i<20:
+        print('Sequence for',str(a)+':',x.list)
+    return i#we don't necessarily need any return, but why not
     
 
 class ulist:
@@ -45,7 +45,5 @@ class ulist:
         return self.list[i]
 
 if __name__ == '__main__':
-    if len(sys.argv)!=2:
-        raise AttributeError('Too few arguements')
-    else:
-        ulam(int(sys.argv[1]))
+    for arg in sys.argv[1:]:
+        ulam(int(arg))

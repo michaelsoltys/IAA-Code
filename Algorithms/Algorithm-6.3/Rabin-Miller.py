@@ -1,23 +1,28 @@
 # Introduction to the Analysis of Algorithms (3rd ed)
 # Michael Soltys
-## Implementation of Algorithm 6.3
+## Implementation of Algorithm 6.3 - Rabin-Miller
 ## Ryan McIntyre
 ## 12/12/2016
 ## python 3.5.2
 
 from random import choice
 from copy import copy
+import sys
 
 def RabinMiller(n,iterations=20):
     if n == 2:
+        print(n,'IS prime.')
         return True
     if n%2 == 0:
+        print(n,'is NOT prime.')
         return False
     i = 0
     while i < iterations:
         if not RabinMillerCore(n):
+            print(n,'is NOT prime.')
             return False
         i += 1
+    print(n,'IS prime.')
     return True
     
 def RabinMillerCore(n):
@@ -65,3 +70,14 @@ def exp(a,n,m):#a^n mod m (a^n if m==0)
             output = output%m
         i += 1
     return output
+
+if __name__ == '__main__':
+    n = len(sys.argv)
+    if n < 2:
+        raise TypeError('Rabin-Miller requires a postive integer input.')
+    elif n > 3:
+        raise TypeError('Got 3 inputs for Rabin-Miller. Expected at most 2.')
+    elif n==3:
+        RabinMiller(int(sys.argv[1]),int(sys.argv[2]))
+    else:
+        RabinMiller(int(sys.argv[1]))
