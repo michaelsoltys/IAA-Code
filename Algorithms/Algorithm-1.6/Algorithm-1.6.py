@@ -1,6 +1,6 @@
 # Introduction to the Analysis of Algorithms (3rd ed)
 # Michael Soltys
-## Algorithm 1.7 - Ulam's
+## Algorithm 1.6 - Ulam's
 ## Ryan McIntyre
 ## 5/26/2017
 ## python 3.5.2
