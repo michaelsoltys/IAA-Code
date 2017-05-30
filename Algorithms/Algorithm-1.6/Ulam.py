@@ -45,5 +45,15 @@ class ulist:
         return self.list[i]
 
 if __name__ == '__main__':
-    for arg in sys.argv[1:]:
-        ulam(int(arg))
+    if len(sys.argv) > 2:
+        if sys.argv[-1][:6] == 'limit=':
+            limit = int(sys.argv[-1][6:])
+            for arg in sys.argv[1:-1]:
+                ulam(int(arg),limit)
+        else:
+            for arg in sys.argv[1:]:
+                ulam(int(arg))
+    elif len(sys.argv) == 2:
+        ulam(sys.argv[1])
+    else:
+        raise TypeError('Ulam\'s requires an integer input.')

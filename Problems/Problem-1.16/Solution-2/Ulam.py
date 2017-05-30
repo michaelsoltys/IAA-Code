@@ -7,7 +7,7 @@
 
 import sys
 
-def ulam(a):
+def ulam(a,limit=20):
     
     #check pre-conditions
     if a!=int(a) or a<=0:
@@ -24,7 +24,7 @@ def ulam(a):
     i += 2
     #once the last is 4, the next two will be 2, 1.
     print('Iterations for',str(a)+':',i)
-    if i<20:
+    if i<=limit:
         print('Sequence for',str(a)+':',x.list)
     return i#we don't necessarily need any return, but why not
     
@@ -45,5 +45,15 @@ class ulist:
         return self.list[i]
 
 if __name__ == '__main__':
-    for arg in sys.argv[1:]:
-        ulam(int(arg))
+    if len(sys.argv) > 2:
+        if sys.argv[-1][:6] == 'limit=':
+            limit = int(sys.argv[-1][6:])
+            for arg in sys.argv[1:-1]:
+                ulam(int(arg),limit)
+        else:
+            for arg in sys.argv[1:]:
+                ulam(int(arg))
+    elif len(sys.argv) == 2:
+        ulam(sys.argv[1])
+    else:
+        raise TypeError('Ulam\'s requires an integer input.')

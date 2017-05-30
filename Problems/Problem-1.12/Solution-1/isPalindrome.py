@@ -19,7 +19,7 @@ def isPalindrome(x):
     return True
 
 #above we have algorithm 1.3 defined explicitly as it is in the text.
-#below, we have the slice equivalent of the above
+#below, we have the slice equivalent of the above.
 
 def isPal(x):
     n = len(x)

@@ -8,7 +8,8 @@
 from random import randint
 import matplotlib.pyplot as plt
 
-#-----------------------------------------------------------------------Euclids
+'''Below we have the definition contain in 'extended_euclids.py',
+for reference during the experiment.
 
 def ext_euc(m,n):
     
@@ -27,6 +28,7 @@ def ext_euc(m,n):
         q = int(c/d)#int(float) rounds the float down
         r = c%d
         if r == 0:
+            print(str(a)+'*'+str(m),'+',str(b)+'*'+str(n),'=',d,'= gcf('+str(d)+')')
             return (a,b)            
         c = d
         d = r
@@ -35,9 +37,9 @@ def ext_euc(m,n):
         a = h - q * a
         h = y
         y = b
-        b = h - q * b
+        b = h - q * b'''
         
-#--------------------------------------------------------------------Experiment
+#---------------------------------------------------------------Experiment
         
 def ext_euc_step_count(m,n):
     
