@@ -13,4 +13,4 @@ should be 6 total rows in the input.
 
 Output is stable matching of the two groups.
 
-Sample output has been provided in 'input.txt'.
+Sample input has been provided in 'input.txt'.

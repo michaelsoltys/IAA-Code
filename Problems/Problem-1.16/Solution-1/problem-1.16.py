@@ -1,7 +1,8 @@
-# Introduction to the Analysis of Algorithms (2nd ed)
+# Introduction to the Analysis of Algorithms (3rd ed)
 # Michael Soltys
-# Solution to problem 1.25
-# February 20, 2015
+## Solution to problem 1.16 (1.25 in 2nd ed)
+## February 20, 2015
+## Python 2
 
 import sys
 

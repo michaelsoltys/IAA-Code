@@ -33,7 +33,4 @@ def isPal(x):
 
 if __name__ == '__main__':
     for arg in sys.argv[1:]:
-        try:
-            isPal(eval(arg))
-        except NameError:
-            isPal(arg)
+        isPal(arg)
