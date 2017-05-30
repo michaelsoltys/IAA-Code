@@ -1,12 +1,3 @@
-#! /usr/bin/env python3
-
-"""
-Luke LaFountaine
-Carlos A. Gomez
-MATH 354 Algorithms
-Assignment 5
-11/10/16
-"""
 # Introduction to the Analysis of Algorithms (3rd ed)
 # Michael Soltys
 ## Solution to problem 4.23
