@@ -24,10 +24,10 @@ def isPalindrome(x):
 def isPal(x):
     n = len(x)
     if x[:int(n/2):1] == x[-1:-int(n/2)-1:-1] :
-        print(x,'IS a palindrome.')
+        print('"',str(x),'" IS a palindrome.')
         return True
     else:
-        print(x,'IS NOT a palindrome.')
+        print('"',str(x),'" IS NOT a palindrome.')
         return False
 
 

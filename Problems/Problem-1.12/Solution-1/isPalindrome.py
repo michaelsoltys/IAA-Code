@@ -24,13 +24,16 @@ def isPalindrome(x):
 def isPal(x):
     n = len(x)
     if x[:int(n/2):1] == x[-1:-int(n/2)-1:-1] :
-        print(x,'IS a palindrome.')
+        print('"',str(x),'" IS a palindrome.')
         return True
     else:
-        print(x,'IS NOT a palindrome.')
+        print('"',str(x),'" IS NOT a palindrome.')
         return False
 
 
 if __name__ == '__main__':
     for arg in sys.argv[1:]:
-        isPal(arg)
+        try:
+            isPal(eval(arg))
+        except:
+            isPal(arg)
