@@ -4,9 +4,10 @@
 \usepackage{fancyhdr}
 \usepackage{amssymb}
 \pagestyle{fancy}
-\lhead{Problem 1.2 Sample}
-\rhead{An introduction to the analysis of algorithms}
+\lhead{An introduction to the analysis of algorithms\break Michael Soltys}
+\rhead{Problem 1.2 Solution\break Ryan McIntyre}
 \renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headheight}{24pt}
 \pagenumbering{gobble}
 
 \newtheorem{inner}{Problem}
@@ -38,7 +39,7 @@ Clearly,
 an^2+bn+c\ge an^2-|b|n-|c|=n^2(a-|b|/n-|c|/n^2)
 \end{equation} 
 $|b|$ is finite, so $\exists n_b\in\N$ such that $|b|/n_b\le a/4$.
-Similarly, $\exists n_c\in\N$ such that $|c|/n^2\le a/4$.
+Similarly, $\exists n_c\in\N$ such that $|c|/n_c^2\le a/4$.
 Let $n_0=max\{n_b,n_c\}$. For $n\ge n_0$, 
 $a-|b|/n_0-|c|/n_0^2\ge a-a/4-a/4=a/2$. This, combined with (\ref{eq1}),
 grants:
