@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage{algorithm,algorithmic}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\lhead{An introduction to the analysis of algorithms\break Michael Soltys}
+\rhead{Problem 2.5 Solution\break Ryan McIntyre}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headheight}{24pt}
+\pagenumbering{gobble}
+
+\newtheorem{inner}{Problem}
+\newenvironment{prb}[1]
+	{\renewcommand\theinner{#1}\inner}
+	{\endinner}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\begin{document}
+\begin{prb}{2.5}
+Given that the edges can be ordered in $m^2$ steps, with, for example,
+insertion sort, what is the running time of
+algorithm~\ref{alg:kruskal}?
+\end{prb}
+
+\noindent Given:
+\begin{algorithm}
+\caption{Kruskal}%
+\label{alg:kruskal}%
+\index{algorithm!Kruskal|textbf}
+\begin{algorithmic}[1]
+\STATE Sort the edges: $c(e_1)\leq c(e_2)\leq\ldots\leq c(e_m)$ 
+\STATE $T\longleftarrow\emptyset$ 
+\FOR{$i:1..m$} 
+    \IF{$T\cup\{e_i\}$ has no cycle}
+        \STATE $T\longleftarrow T\cup\{e_i\}$
+    \ENDIF
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\noindent Where line 4 is accomplished by adding the array, $D$
+(which maps the index of each vertex to its corresponding component)
+and updating it with:
+
+\begin{algorithm}
+\caption{Merging components}%
+\label{alg:component}%
+\index{algorithm!Merging Components|textbf}
+\begin{algorithmic}
+\STATE $k\longleftarrow D[r]$ 
+\STATE $l\longleftarrow D[s]$ 
+\FOR{$j:1..n$}
+     \IF{$D[j]=l$}
+        \STATE $D[j]\longleftarrow k$
+     \ENDIF
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\noindent{\bf Solution:}\break
+We know that lines 1-2 of algorithm~\ref{alg:kruskal} require at most 
+$m^2+1$ steps. We must also create the array $D$, which requires $n$
+more steps (where $n$ is the number of vertices). 
+
+The for loop on line 3 will go through exactly $m$ 
+iterations. 
+``$T\cup\{e_i\}$ has no cycle'' (where $e_i=(r,s)$) is equivalent to 
+``$D[r]\neq D[s]$'', so the check on line 4 only requires one step. 
+For the purpose of establishing an upper bound it is safe to assume 
+that every check  returns ``true'', so we must go through the entirety 
+of  algorithm~\ref{alg:component} in every iteration of the for loop. 
+
+Algorithm~\ref{alg:component} requires 2 assignments, followed by a loop
+which runs $n$ times and has at most
+$2$ steps; algorithm~\ref{alg:component} is $O(2n+2)=O(n)$.
+
+So the composite algorithm, where algorithm~\ref{alg:component} 
+is used to accomplish line 4 of algorithm~\ref{alg:kruskal} and 
+insertion sort is used for line 1, is clearly $O(m^2+n+1+m(2n+2))$.
+Identically, if $p=\max(n,m)$, the algorithm is $O(p^2)$. 
+
+In other words, if the number of edges is greater than the number of
+vertices the bottleneck is the sorting algorithm. Moreover, under the
+assumption that the graph in question is connected, the number of vertices
+is at least $n-1$; any graph with $n-1$ edges is either already a spanning
+tree or is not connected, so it is safe to assume $m\ge n$.
+Using merge sort, heap sort or quick sort for the 
+sorting process could improve the complexity to $O(m\log(m))$.
+
+\end{document}
