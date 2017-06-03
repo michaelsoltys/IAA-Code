@@ -1,0 +1,76 @@
+\documentclass{article}
+
+
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\pagestyle{fancy}
+\lhead{An introduction to the analysis of algorithms\break Michael Soltys}
+\rhead{Problem 2.8 Solution\break Ryan McIntyre}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headheight}{24pt}
+\newcommand{\opt}{\text{\sc Opt}}
+\pagenumbering{gobble}
+
+\newtheorem{inner}{Problem}
+\newenvironment{prb}[1]
+	{\renewcommand\theinner{#1}\inner}
+	{\endinner}
+%\newenvironment{proof}
+%{\noindent\textsc{Proof:}}{\hfill $\square$}
+
+\begin{document}
+
+\begin{prb}{2.8}
+	Show that given a connected graph $G=(V,E)$, Kruskal's algorithm outputs a
+	$T$ that is both connected and acyclic.
+\end{prb}
+
+\noindent{\bf Solution:}\break
+We use the following loop invariant from the text:
+\begin{equation}\label{eq1}
+\textit{\emph{The edge set $T\cup\{e_{i+1},\ldots,e_m\}$ connects all
+nodes in $V$.}}
+\end{equation}
+
+\begin{proof}
+We start from the basis case: before the first iteration, $T_0$ is
+the empty set ($i=0$). Since $G$ is connected, obviously 
+$\{e_1,e_2,\ldots,e_m\}=E$ connects all nodes in $V$.
+
+Next we prove induction. Assume that, after $i-1$ iterations,
+$T_{i-1}\cup\{e_i,\ldots,e_m\}$ connects all nodes in $V$. On iteration
+$i$, we have two cases:
+
+\noindent{\bf Case 1:} $T_{i-1}\cup\{e_i\}$ has no cycle, so 
+$T_i=T_{i-1}\cup\{e_i\}$. $T_i\cup\{e_{i+1},\ldots,e_m\}$ and 
+$T_{i-1}\cup\{e_i,\ldots,e_m\}$ are the same set, $e_i$ has just
+moved from the ``remaining'' edges to $T$. By the hypothesis, the 
+latter edge set connects all nodes in $V$, so the prior must as well.
+
+\noindent{\bf Case 2:} $T_{i-1}\cup\{e_i\}$ contains a cycle, so
+$T_i=T_{i-1}$. Consider any two nodes $u,v\in V$. By the hypothesis,
+there is a path from $u$ to $v$ consisting of edges in 
+$T_{i-1}\cup\{e_i,\ldots,e_m\}$. If $e_i$ is not in this path,
+then we're done; there is still a path between $u$ and $v$, as 
+we've only lost access to $e_i$. If $e_i=(a,b)$ is in this path, we
+can replace it with another path from $a$ to $b$; $e_i$ was in a cycle,
+so another such path necessarily exists. 
+
+We have found a path connecting arbitrary $u$ and $v$ in 
+$T_i\cup\{e_i,\ldots,e_m\}$ given that one existed in 
+$T_{i-1}\cup\{e_i,\ldots,e_m\}$, thereby completing the induction step
+and proving that (\ref{eq1}) is a loop invariant.
+
+Clearly, after all $i=m$ iterations, this loop invariant reads
+``$T_i\cup\{e_{i+1},\ldots\}$ connects all nodes in $V$.'' But
+$e_m$ was the last edge, so $\{e_{i+1},\ldots\}$ is the empty set.
+Therefore, $T_m$ connects all nodes in $V$. By construction, 
+$T_m$ cannot contain any cycles; any edge which would
+have completed a cycle was simply not included. So, after $m$ iterations,
+$T$ connects all nodes in $V$ and is acyclic - 
+$T$ is a spanning tree of $G$.\qedhere 
+\end{proof}
+
+\end{document}
