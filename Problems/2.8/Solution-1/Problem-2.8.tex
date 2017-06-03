@@ -26,14 +26,13 @@
 	$T$ that is both connected and acyclic.
 \end{prb}
 
-\noindent{\bf Solution:}\break
+\begin{proof}
 We use the following loop invariant from the text:
 \begin{equation}\label{eq1}
 \textit{\emph{The edge set $T\cup\{e_{i+1},\ldots,e_m\}$ connects all
 nodes in $V$.}}
 \end{equation}
 
-\begin{proof}
 We start from the basis case: before the first iteration, $T_0$ is
 the empty set ($i=0$). Since $G$ is connected, obviously 
 $\{e_1,e_2,\ldots,e_m\}=E$ connects all nodes in $V$.

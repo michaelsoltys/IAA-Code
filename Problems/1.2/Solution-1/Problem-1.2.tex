@@ -17,6 +17,9 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 
+\newenvironment{solution}
+	{\noindent{\bf Solution:}}{\hfill$\square$}
+
 \begin{document}
 
 $an^2+bn+c=\Theta(n^2)$, where $a>0$. To see this, note that 
@@ -33,7 +36,7 @@ for $k\geq0$, $\sum_{i=0}^ka_in^i=\Theta(n^k)$; this shows the
 simplfying advantage of the Big O.
 \end{prb}
 
-\noindent{\bf Solution:}\break
+\begin{solution}
 Clearly, 
 \begin{equation}\label{eq1}
 an^2+bn+c\ge an^2-|b|n-|c|=n^2(a-|b|/n-|c|/n^2)
@@ -64,5 +67,6 @@ For all $n\ge n_0$, $p(n)\ge(a_k-a_k/2)n^k=cn^k$. Thus, $p(n)=\Omega(n^k)$.
 
 We have shown that $p(n)\in O(n^k)$ and $p(n)\in\Omega(n^k)$, so 
 $p(n)=\Theta(n^k)$. 
+\end{solution}
 
 \end{document}
