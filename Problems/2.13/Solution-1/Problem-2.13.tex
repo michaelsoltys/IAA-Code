@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\pagestyle{fancy}
+\lhead{An introduction to the analysis of algorithms\break Michael Soltys}
+\rhead{Problem 2.13 Solution\break Ryan McIntyre}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headheight}{24pt}
+\newcommand{\opt}{\text{\sc Opt}}
+\pagenumbering{gobble}
+
+\newtheorem{inner}{Problem}
+\newenvironment{prb}[1]
+	{\renewcommand\theinner{#1}\inner}
+	{\endinner}
+
+\begin{document}
+
+\begin{prb}{2.13}
+Suppose that edge $e_1$ has a smaller cost than any of the other
+edges in graph $G$; that is, $c(e_1)<c(e_i)$, for all $i>1$. Show
+that there is at least one MCST for $G$ that includes $e_1$. 
+\end{prb}
+
+\begin{proof}
+First, note that if we give $G$ to Kruskal's, with the edges in
+the order of their indices as opposed to sorted by weight, the 
+resulting tree will include $e_1$ - a cycle cannot be formed with
+the first (or second) edge. Therefore, there is necessarily a 
+spanning tree $T_1$ of $G$ such that $e_1\in T_1$.
+
+For contradiction, assume that there is a MCST $T_2$ such that
+$e_1\notin T_2$. By the Exchange Lemma, there is an $e_2$ in $T_2$
+such that $T_3=T_2\cup\{e_1\}-\{e_2\}$ is a spanning tree. But 
+$c(e_1)<c(e_2)$, so $c(T_3)<c(T_2)$; that is, $T_2$ is not a minimum
+cost spanning tree. We've found our contradiction; there cannot be a 
+MCST that does not contain $e_1$. Clearly, there must me at least one
+minimum cost spanning tree. We've shown that it contains $e_1$.
+\end{proof}
+
+\end{document}
