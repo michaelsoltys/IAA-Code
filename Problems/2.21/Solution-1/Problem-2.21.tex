@@ -1,0 +1,88 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{algorithm,algorithmic}
+\pagestyle{fancy}
+\lhead{An introduction to the analysis of algorithms\break Michael Soltys}
+\rhead{Problem 2.21 Solution\break Ryan McIntyre}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headheight}{24pt}
+\newcommand{\opt}{\text{\sc Opt}}
+\pagenumbering{gobble}
+
+\newtheorem{innerthm}{Theorem}
+\newenvironment{thm}[1]
+	{\renewcommand\theinnerthm{#1}\innerthm}
+	{\endinnerthm}
+
+\newtheorem{innerlem}{Lemma}
+\newenvironment{lem}[1]
+	{\renewcommand\theinnerlem{#1}\innerlem}
+	{\endinnerlem}
+
+\newtheorem{innerprb}{Problem}
+\newenvironment{prb}[1]
+	{\renewcommand\theinnerprb{#1}\innerprb}
+	{\endinnerprb}
+
+\begin{document}
+
+\begin{algorithm}
+\caption{Job scheduling}%
+\label{alg:jobs}%
+\begin{algorithmic}[1]
+\STATE Sort the jobs in non-increasing order of profits:
+  $g_1\geq g_2\geq\ldots\geq g_n$ 
+\STATE $d\longleftarrow\max_id_i$ 
+\FOR{$t:1..d$} 
+     \STATE $S(t)\longleftarrow 0$ 
+\ENDFOR
+\FOR{$i:1..n$} 
+     \STATE Find the largest $t$ such that $S(t)=0$ and $t\leq d_i$,
+            $S(t)\longleftarrow i$
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\begin{thm}{2.18}\label{thm}
+The greedy solution to job scheduling is optimal\index{optimal!job
+scheduling}. That is, the profit $P(S)$ of the schedule $S$ computed
+by algorithm~\ref{alg:jobs} is as large as possible.
+\end{thm}
+
+\begin{lem}{2.19}\label{lem}
+``$S$ is promising'' is an invariant for the (second) for-loop
+in algorithm~\ref{alg:jobs}.   
+\end{lem}
+
+\begin{prb}{2.21}
+Why does lemma~\ref{lem} imply theorem~\ref{thm}?
+(Hint: this is a simple observation). 
+\end{prb}
+
+\begin{proof}
+Assume $S_{i-1}$ (i.e. $S$ after $i-1$ iterations) is promising.
+
+\noindent{\bf Case 1:} If task $i$ is not 
+scheduled on iteration $i$, then there is no $S'$ that extends 
+$S_{i-1}$ which schedules task $i$. But $S_{i-1}$ is promising, so 
+there is an optimal $S'$ that extends $S_{i-1}$; clearly the $S'$ does
+not schedule task $i$, so ``losing access'' to task $i$ does not 
+change the fact that $S_i=S_{i-1}$ is promising.
+
+\noindent{\bf Case 2:} If, on the other hand, task $i$ is scheduled at
+time $t_i$, let $S_{i-1}'$ be the optimal extension of $S_{i-1}$. If
+$S_{i-1}'$ schedules task $i$ at $t_i$, then we're done. If $t_i$ is
+scheduled at a different time $t_0$, then $t_0<t_i$, as $t_i$ was the
+latest available time for task $i$. So let $S_i'$ be $S_{i-1}'$, but
+with the tasks at times $t_i$ and $t_0$ switched; we know task $i$ may
+be moved to $t_i$ as $t_i$ is before $d_i$, and we know the task
+scheduled at $t_i$ may be moved to $t_0$ because $t_0<t_i$.
+We have found an extension of $S_i$ with the same cost as $S_{i-1}'$,
+and $S_{i-1}'$ is optimal. Therefore, $S_i$ is promising.
+\end{proof}
+
+\end{document}
