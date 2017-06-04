@@ -1,4 +1,4 @@
-Implementation of Algorithm 1.1 for Division
+Implementation of Algorithm 1.1 for division
 Author: Ryan McIntyre
 
 Input is positive integers, m and n.
