@@ -11,7 +11,6 @@ def scheduling(input_text):
     
     #check that input is well-formed, organize
     jobs = eval('['+''.join(open(input_text,'r').readlines())+']')
-    deadline = dict()
     profit = dict()
     D = -float('inf')#last deadline
     for i in range(len(jobs)):
