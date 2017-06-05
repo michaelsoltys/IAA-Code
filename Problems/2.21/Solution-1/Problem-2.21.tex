@@ -67,8 +67,15 @@ Why does lemma~\ref{lem} imply theorem~\ref{thm}?
 Assume that after every iteration of the second for loop, the 
 result is promising. After the final iteration, $S$ is still
 promising, but the only unscheduled tasks are those that 
-cannot extend $S$ at any time. In other words, $S$ is 
+cannot extend $S$ at any time. $S$ is 
 promising but it cannot be extended, so it must be optimal.
+
+Identically, assume the last addition made to the schedule is on iteration
+$i$. Before it was added,
+$S_{i-1}$ was promising, and there was exactly 1 task which could extend
+it. Clearly the profit gained from scheduling this task is the same
+regardless of when it is scheduled, so every extension of $S_{i-1}$ has
+the same profit, equal to that of $S_i$.
 \end{proof}
 
 
