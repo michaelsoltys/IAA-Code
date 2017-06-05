@@ -64,25 +64,12 @@ Why does lemma~\ref{lem} imply theorem~\ref{thm}?
 \end{prb}
 
 \begin{proof}
-Assume $S_{i-1}$ (i.e. $S$ after $i-1$ iterations) is promising.
-
-\noindent{\bf Case 1:} If task $i$ is not 
-scheduled on iteration $i$, then there is no $S'$ that extends 
-$S_{i-1}$ which schedules task $i$. But $S_{i-1}$ is promising, so 
-there is an optimal $S'$ that extends $S_{i-1}$; clearly the $S'$ does
-not schedule task $i$, so ``losing access'' to task $i$ does not 
-change the fact that $S_i=S_{i-1}$ is promising.
-
-\noindent{\bf Case 2:} If, on the other hand, task $i$ is scheduled at
-time $t_i$, let $S_{i-1}'$ be the optimal extension of $S_{i-1}$. If
-$S_{i-1}'$ schedules task $i$ at $t_i$, then we're done. If $t_i$ is
-scheduled at a different time $t_0$, then $t_0<t_i$, as $t_i$ was the
-latest available time for task $i$. So let $S_i'$ be $S_{i-1}'$, but
-with the tasks at times $t_i$ and $t_0$ switched; we know task $i$ may
-be moved to $t_i$ as $t_i$ is before $d_i$, and we know the task
-scheduled at $t_i$ may be moved to $t_0$ because $t_0<t_i$.
-We have found an extension of $S_i$ with the same cost as $S_{i-1}'$,
-and $S_{i-1}'$ is optimal. Therefore, $S_i$ is promising.
+Assume that after every iteration of the second for loop, the 
+result is promising. After the final iteration, $S$ is still
+promising, but the only unscheduled tasks are those that 
+cannot extend $S$ at any time. In other words, $S$ is 
+promising but it cannot be extended, so it must be optimal.
 \end{proof}
+
 
 \end{document}
