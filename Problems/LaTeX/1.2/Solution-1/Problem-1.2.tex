@@ -38,17 +38,18 @@ simplfying advantage of the Big O.
 
 \begin{solution}
 Clearly, 
-\begin{equation}\label{eq1}
+\begin{equation}\label{eq:exr:BigO-polynomial1}
 an^2+bn+c\ge an^2-|b|n-|c|=n^2(a-|b|/n-|c|/n^2)
 \end{equation} 
 $|b|$ is finite, so $\exists n_b\in\N$ such that $|b|/n_b\le a/4$.
 Similarly, $\exists n_c\in\N$ such that $|c|/n_c^2\le a/4$.
 Let $n_0=max\{n_b,n_c\}$. For $n\ge n_0$, 
-$a-|b|/n_0-|c|/n_0^2\ge a-a/4-a/4=a/2$. This, combined with (\ref{eq1}),
+$a-|b|/n_0-|c|/n_0^2\ge a-a/4-a/4=a/2$. This, combined with
+(\ref{eq:exr:BigO-polynomial}),
 grants:
-\begin{equation}\label{eq2}
+$$
 \frac{a}{2}n^2\leq an^2+bn+c
-\end{equation}
+$$
 for all $n\ge n_0$. We need only to assign $c_3$ the value $a/2$ to complete
 the proof that $an^2+bn+c\in\Omega(n^2)$.
 
