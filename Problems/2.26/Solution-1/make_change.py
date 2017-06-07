@@ -5,8 +5,6 @@
 ## 6/4/2017
 ## python 3.5.2
 
-import sys
-
 #n is a positive integer, in "cents" or least common divisor of currency
 #change should be decreasing sequence of positive integers
 def make_change(n,change):
