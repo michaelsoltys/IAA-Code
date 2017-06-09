@@ -1,4 +1,4 @@
-Solution to Problem 2.26 / Implementation of Algorithm 2.4 - 
+Solution to Problem 2.26 / Implementation of Algorithm 2.4 
 Makes change given increment list.
 Author: Ryan McIntyre
 
