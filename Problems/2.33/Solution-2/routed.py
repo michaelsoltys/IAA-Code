@@ -21,6 +21,7 @@ class route:
         self.like['con'] = set(['con','Con','CON','connect','Connect','CONNECT','c'])
         self.like['display'] = set(['display','Display','DISPLAY'])
         self.like['quit'] = set(['quit','Quit','QUIT','exit','Exit','EXIT','q'])
+        self.like['tree'] = set(['tree','Tree','TREE'])
         
     def add_rt(self,n_list):
         invalid = []
@@ -283,6 +284,50 @@ class route:
                 print(line)
         else:
             print('\nNothing to display. Try adding some routers, networks and connections.\n')
+    
+    def tree(self,x):
+        Q1 = ['rt'+str(n) for n in self.rt] + ['nt'+str(n) for n in self.nt]
+        if x in Q1:
+            Q2 = []
+            adj = dict([(q,set()) for q in Q1])
+            for con in self.cons:
+                adj[con[0]].add(con[1])
+            dist = dict()
+            prev = dict()
+            for v in Q1:
+                dist[v] = float('inf')
+            dist[x] = 0
+            while len(Q1):
+                Q1.sort(key = lambda q : dist[q])
+                u = Q1[0]
+                Q1.remove(u)
+                Q2.append(u)
+                for v in adj[u]:
+                    alt = dist[u] + self.cons[(u,v)]
+                    if alt < dist[v]:
+                        dist[v] = alt
+                        prev[v] = u
+            Q2.remove(x)
+            Q2.sort(key = lambda q : dist[q])
+            m = max([len(str(dist[q])) for q in Q2]) + 2
+            lines = ['\nTree for '+str(x)+':']
+            for v in Q2:
+                if v in prev:
+                    line = v
+                    a = v
+                    while a in prev:
+                        a = prev[a]
+                        line = a + ', ' + line
+                    line = str(dist[v]).ljust(m) + ': ' + line 
+                    lines.append(line)
+                else:
+                    lines.append(''.ljust(m)+': no path to '+v)
+            lines[-1] = lines[-1] + '\n'
+            for line in lines:
+                print(line)
+                
+        else:
+            print('Invalid arguement "',x,'" for "tree".')
         
     def parse(self,args):
         i = 0
@@ -332,9 +377,14 @@ class route:
         
         elif args[0] in self.like['display']:
             self.display()
+        elif args[0] in self.like['tree']:
+            if len(args) == 2:
+                self.tree(args[1])
+            else:
+                print('\nExpected 1 additional arguement for "tree".',len(args)-1,'given.\n')
         else:
-            print('Invalid arguement',args[0])
-            
+            print('\nInvalid arguement',args[0],'\n')
+    
 
 if __name__ == '__main__':
     D = route()
