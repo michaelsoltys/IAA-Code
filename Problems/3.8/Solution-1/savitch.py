@@ -5,8 +5,8 @@
 ## 11/03/2016
 ## python 3.5.2
 
-from math import floor
 from collections import deque
+import sys
 
 
 class Graph(object):
@@ -22,7 +22,7 @@ class Graph(object):
         i = 0
         while i < len(adjacencyString) :
             if  adjacencyString[i:i+1] == '1':
-                u = 1 + floor((i)/self.size)
+                u = 1 + int((i)/self.size)
                 v = 1 + i%self.size
                 self.edges.append([u,v])
             i += 1
@@ -77,6 +77,39 @@ class Savitch(object):
             else:
                 print('R(G,',item[0],',',item[1],',',item[2],')')
 
-graph = Graph('graph.txt') #input adjacency matrix filename
-goTime = Savitch(graph,1,4) #(graph,vertexOne,vertexTwo) where the vertices are 1,2,...,n
+#graph = Graph('graph.txt') #input adjacency matrix filename
+#goTime = Savitch(graph,1,4) #(graph,vertexOne,vertexTwo) where the vertices are 1,2,...,n
 #outputs "proof" of connection or "F" if no connection
+
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        while True:
+            inp = input('Enter the location of the adjacency matrix and'+
+                        'two integer indices of vertices, for Savitch\'s\n...')
+            args = [x.replace(' ','') for x in inp.split(' ') if x]
+            if args[0] in ['q','Q','quit','Quit','QUIT']:
+                break
+            if len(args) == 3:
+                graph = None
+                try:
+                    graph = Graph(args[0])
+                except:
+                    print('Invalid input',args[0])
+                else:
+                    u = 0
+                    v = 0
+                    try:
+                        u = int(args[1])
+                        v = int(args[2])
+                    except:
+                        print('Non-integer vertex index',args[1],'or',args[2])
+                    else:
+                        n = graph.size
+                        if u<1 or v<1 or u>n or v>n:
+                            print('Invalid vertex index',args[1],'or',args[2])
+                        else:
+                            Savitch(graph,u,v)
+                            break
+            else:
+                print('\nExpected 4 arguements.',len(args),'given.\n')
+        
