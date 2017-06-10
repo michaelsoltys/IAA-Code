@@ -57,12 +57,10 @@ def merge(X,Y):
         else:
             print('Something went wrong #2.')
         i += 1
-    while ix < len(X):
-        Z.append(X[ix])
-        ix += 1
-    while iy < len(Y):
-        Z.append(Y[iy])
-        iy += 1
+    if ix < len(X):
+        Z += X[ix:]
+    if iy < len(Y):
+        Z += Y[iy:]
     return Z
 
 
@@ -82,28 +80,48 @@ def mergesort(L):
 #and we'll make a minimal main loop
 if __name__ == '__main__':
     a = len(sys.argv)
-    args = []
     if a == 1:
-        inp = input('\nEnter a space-separated list of words for sorting.\n... ')
-        args = [arg for arg in inp.split(' ') if arg]
+        while True:
+            inp = input('\nEnter a space-separated list of words for sorting.\n... ')
+            args = [arg for arg in inp.split(' ') if arg]
+            if args[0] in ['q','quit','Quit','QUIT','Q'] and len(args)==1:
+                break
+            else:
+                omit = []
+                i = 0
+                while i < len(args):
+                    toggle = True
+                    for char in args[i]:
+                        if not char in alpha:
+                            omit.append(args[i])
+                            del args[i]
+                            toggle = False
+                            break
+                    if toggle:
+                        i += 1
+                ms = mergesort(args)
+                print('\nSorted list:')
+                print('   '+', '.join(ms)+'\n')
+                if len(omit):
+                    print('The following were omitted, as they contained unsupported characters:')
+                    print('   '+'  '.join(omit)+'\n')
     else:
         args = sys.argv[1:]
-    
-    omit = []
-    i = 0
-    while i < len(args):
-        toggle = True
-        for char in args[i]:
-            if not char in alpha:
-                omit.append(args[i])
-                del args[i]
-                toggle = False
-                break
-        if toggle:
-            i += 1
-    ms = mergesort(args)
-    print('\nSorted list:')
-    print('   '+', '.join(ms)+'\n')
-    if len(omit):
-        print('The following were omitted, as they contained unsupported characters:')
-        print('   '+'  '.join(omit)+'\n')
+        omit = []
+        i = 0
+        while i < len(args):
+            toggle = True
+            for char in args[i]:
+                if not char in alpha:
+                    omit.append(args[i])
+                    del args[i]
+                    toggle = False
+                    break
+            if toggle:
+                i += 1
+        ms = mergesort(args)
+        print('\nSorted list:')
+        print('   '+', '.join(ms)+'\n')
+        if len(omit):
+            print('The following were omitted, as they contained unsupported characters:')
+            print('   '+'  '.join(omit)+'\n')
