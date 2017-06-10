@@ -23,7 +23,6 @@ def quicksort(input_list):
             else:
                 large.append(a)
         return quicksort(small) + [x] + quicksort(large)
-X = [x for x in range(10,0,-1)]
 
 
 #main first attempts to evaluate inputs before sorting.
