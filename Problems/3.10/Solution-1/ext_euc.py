@@ -2,7 +2,7 @@
 # Michael Soltys
 ## Problem 3.10 - Recursive Extended Euclid's
 ## Ryan McIntyre
-## 6/7/2017
+## 6/10/2017
 ## python 3.5.2
 
 import sys
