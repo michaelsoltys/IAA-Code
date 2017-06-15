@@ -1,3 +1,4 @@
+# Introduction to the Analysis of Algorithms (3rd ed)
 # Michael Soltys
 ## Problem 4.8 - Floyd
 ## Ryan McIntyre
@@ -11,7 +12,7 @@ def floyd(input_text):
     
     #we're going to assume, this time, that the input is well-defined
     #first we read the input, set up a dictionary from each ordered pair
-    #to its corresponding cost / weight
+    #of vertices to its corresponding cost / weight
     inp = open(input_text,'r').read().replace('\n','').split(',')
     args = [arg.replace(' ','') for arg in inp if arg]
     n = sqrt(len(args))

@@ -12,4 +12,4 @@ Output is a 2 dimensional array with the cost of a
 shortest path between each pair of vertices, in the form
 of a dictionary mapping each pair to its cost; the
 vertices are named, implicitly, integers 0 to n-1,
-where n is the vertex count.
+where n is the vertex count. 
