@@ -1,1 +1,1 @@
-exr:makechangeprogram
+exr:makechange-program
