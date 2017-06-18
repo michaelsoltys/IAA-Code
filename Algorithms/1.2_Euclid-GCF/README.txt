@@ -5,5 +5,5 @@ Input is two natural numbers, a and b.
 
 Output is the greatest common factor of a and b.
 
-See Problem 1.10 for the extended version, which outputs coefficients
-n and m such that na + mb = gcd(a,b).
+See also Problem 1.10
+exr:exteuclid

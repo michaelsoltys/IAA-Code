@@ -1,1 +1,1 @@
-exr:pagerankprogram
+exr:pagerank-program

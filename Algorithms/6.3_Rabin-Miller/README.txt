@@ -4,5 +4,5 @@ Author: Ryan McIntyre
 Input: any positive integer n. Optional # of iterations (default 20).
 
 Output: "True" if n is prime. Probably "False" if n is not prime.
-Chance that output is "True" for non-prime input is less than
-(1/2)^(# of iterations).
+Chance that output is "True" for non-prime input is (much) less 
+than (1/2)^(# of iterations).
