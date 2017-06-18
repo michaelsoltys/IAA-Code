@@ -1,1 +1,1 @@
-exr:quicksort
+exr:dcextended-program
