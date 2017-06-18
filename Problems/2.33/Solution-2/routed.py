@@ -5,6 +5,7 @@
 ## 6/7/2017
 ## python 3.5.2
 
+import os
 
 class route:
     
@@ -12,6 +13,7 @@ class route:
         self.rt = set()
         self.nt = set()
         self.cons = dict()
+        self.cur_save = None
         
         self.like = dict()
         self.like['add'] = set(['add','Add','ADD','+'])
@@ -22,6 +24,17 @@ class route:
         self.like['display'] = set(['display','Display','DISPLAY'])
         self.like['quit'] = set(['quit','Quit','QUIT','exit','Exit','EXIT','q'])
         self.like['tree'] = set(['tree','Tree','TREE'])
+        self.like['save'] = set(['save','Save','SAVE'])
+        self.like['load'] = set(['load','Load','LOAD'])
+        self.like['yes'] = set(['yes','Yes','YES','y'])
+        self.like['no'] = set(['no','No','NO','n'])
+        self.like['list'] = set(['list','List','LIST'])
+        
+    def reset(self):
+        self.rt = set()
+        self.nt = set()
+        self.cons = dict()
+        self.cur_save = None
         
     def add_rt(self,n_list):
         invalid = []
@@ -212,6 +225,12 @@ class route:
             print(' ')
 
     def con(self,x,y,w):
+        for word in self.like['nt']:
+            x = x.replace(word,'nt')
+            y = y.replace(word,'nt')
+        for word in self.like['rt']:
+            x = x.replace(word,'rt')
+            y = y.replace(word,'rt')
         tx = ''
         ty = ''
         try:
@@ -222,7 +241,7 @@ class route:
         else:
             vx = 0
             vy = 0
-            if tx not in ['rt','nt']:
+            if not tx in ['rt','nt']:
                 print('\n"'+tx+'" is not a valid node type.\n Try "rt" for router or "nt" for network.\n')
             elif ty not in ['rt','nt']:
                 print('\n"'+tx+'" is not a valid node type.\n Try "rt" for router or "nt" for network.\n')
@@ -338,15 +357,6 @@ class route:
             else:
                 i += 1
         i = 0
-        while i < len(args):
-            for word in self.like['rt']:
-                if word in args[i]:
-                    args[i] = args[i].replace(word,'rt')
-            for word in self.like['nt']:
-                if word in args[i]:
-                    args[i] = args[i].replace(word,'nt')
-            i += 1
-        
         if args[0] in self.like['add']:
             if len(args)==3:
                 if args[1] in self.like['rt']:
@@ -382,15 +392,123 @@ class route:
                 self.tree(args[1])
             else:
                 print('\nExpected 1 additional arguement for "tree".',len(args)-1,'given.\n')
+        elif args[0] in self.like['save']:
+            if len(args) == 1:
+                self.save()
+            elif len(args) == 2:
+                self.save(args[1])
+            else:
+                print('\nExpected at most 1 additional arguement for "save".',len(args)-1,'given.\n')
+        elif args[0] in self.like['load']:
+            if len(args) == 2:
+                self.load(args[1])
+            else:
+                print('\nExpected 1 additional arguement for "load".',len(args)-1,'given.\n')
         else:
             print('\nInvalid arguement',args[0],'\n')
     
+    def save(self,name=None):
+        if name == None:
+            name = self.cur_save
+        if name == None:
+            print('\nThis one hasn\'t been saved before, so it requires a name.',
+                  '\nTry "save <name>"\n')
+        if name in self.like['list']:
+            L = os.listdir('saves/')
+            L = [l for l in L if len(l)>5]
+            L = [l[:-5] for l in L if l[-5:]=='.save']
+            print('Current saves:')
+            for l in L:
+                print('   ',l)
+            print(' ')
+        elif name == self.cur_save:
+            path = 'saves/'+name+'.save'
+            while True:
+                inp = input('\nOverwrite save "'+name+'"?','\n... ')
+                if inp in self.like['yes']:
+                    file = open(path,'w')
+                    file.write(str(self.rt))
+                    file.write('\n')
+                    file.write(str(self.nt))
+                    file.write('\n')
+                    file.write(str(self.cons))
+                    file.close()
+                    self.cur_save = name
+                    break
+                elif inp in self.like['no']:
+                    break
+                else:
+                    print('\nType y for "yes" or n for "no".')
+        elif self.cur_save != None:
+            path = 'saves/'+name+'.save'
+            go = False
+            while True:
+                print('\nYou already have an earlier save,','"'+self.cur_save+'"','for this one.')
+                inp = input('Are you sure you want write under a new name?\n... ')
+                if inp in self.like['yes']:
+                    go = True
+                    break
+                elif inp in self.like['no']:
+                    break
+                else:
+                    print('\nType y for "yes" or n for "no".')
+            if go:
+                if os.path.isfile(path):
+                    while True:
+                        print('\nThere is another save already using your new name.')
+                        inp = input('\nDo you want to overwrite it?\n... ')
+                        if inp in self.like['yes']:
+                            file = open(path,'w')
+                            file.write(str(self.rt))
+                            file.write('\n')
+                            file.write(str(self.nt))
+                            file.write('\n')
+                            file.write(str(self.cons))
+                            file.close()
+                            self.cur_save = name
+                            break
+                        elif inp in self.like['no']:
+                            break
+                        else:
+                            print('\nType y for "yes" or n for "no".')
+                else:
+                    file = open(path,'w')
+                    file.write(str(self.rt))
+                    file.write('\n') 
+                    file.write(str(self.nt))
+                    file.write('\n')
+                    file.write(str(self.cons))
+                    file.close()
+                    self.cur_save = name
+        else:
+            path = 'saves/'+name+'.save'
+            file = open(path,'w')
+            file.write(str(self.rt))
+            file.write('\n')
+            file.write(str(self.nt))            
+            file.write('\n')
+            file.write(str(self.cons))
+            file.close()
+            self.cur_save = name
 
+    def load(self,name):
+        path = 'saves/'+name+'.save'
+        if os.path.isfile(path):
+            file = open(path,'r')
+            lines = file.read().split('\n')
+            file.close()
+            self.rt = eval(lines[0])
+            self.nt = eval(lines[1])
+            self.cons = eval(lines[2])
+            self.cur_save = name
+        else:
+            print('\nSave "'+name+'" does not exist.')
+        
 if __name__ == '__main__':
     D = route()
     while True:
         inp = input('Input a command or type "quit" to quit.\n... ')
-        args = [arg.replace(' ','') for arg in inp.split(' ')]
+        args = [arg.replace(' ','') for arg in inp.split(' ') if arg]
         if args[0] in D.like['quit']:
             break
         D.parse(args)
