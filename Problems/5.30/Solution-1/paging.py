@@ -144,13 +144,16 @@ class LRU():
             self.ll.set_cur(request)
             self.ll.mtf()
             self.fault_count += 1
+        
+    def reset_cache_size(self,n):
+        self.__init__(n)
 
 #------------------------------------------------------------------------------
 #--------------------------------------------------------------------------FIFO
 #------------------------------------------------------------------------------
 
 
-class FIFO():#basically LRU, but without moving "hits" to the front
+class FIFO():
     
     def __init__(self,cache_size):
         self.ll = ll(cache_size)
@@ -174,6 +177,9 @@ class FIFO():#basically LRU, but without moving "hits" to the front
             self.ll.set_cur(request)
             self.ll.mtf()
             self.fault_count += 1
+            
+    def reset_cache_size(self,n):
+        self.__init__(n)
 
 #------------------------------------------------------------------------------
 #--------------------------------------------------------------------------LIFO
@@ -203,6 +209,9 @@ class LIFO():
             self.ll.set_cur(request)
             self.ll.mtf()
             self.fault_count += 1
+            
+    def reset_cache_size(self,n):
+        self.__init__(n)
 
 #------------------------------------------------------------------------------
 #---------------------------------------------------------------------------LFU
@@ -224,6 +233,9 @@ class LFU():
             del self.count[lfu]
             self.count[request] += 1
             self.fault_count += 1
+            
+    def reset_cache_size(self,n):
+        self.__init__(n)
 
 #------------------------------------------------------------------------------
 #-------------------------------------------------------------------------CLOCK
@@ -318,3 +330,45 @@ class CLOCK():
     def full_reset(self):
         self.reset_lists()
         self.reset_score()
+        
+    def reset_cache_size(self,n):
+        self.__init__(n)
+
+#------------------------------------------------------------------------------
+#---------------------------------------------------------------------LFD / OPT
+#------------------------------------------------------------------------------
+
+
+class LFD:
+    
+    def __init__(self,cache_size):
+        self.distance = dict()
+        self.size = cache_size
+        self.fault_count = 0
+        
+    def process(self,request_list):
+        i = 0
+        while i < len(request_list):
+            r = request_list[i]
+            if r in self.distance:
+                if r in request_list[i+1:]:
+                    self.distance[r] += request_list[i+1:].index(r)+1
+                else:
+                    self.distance[r] = float('inf')
+            elif len(self.distance) < self.size:
+                if r in request_list[i+1:]:
+                    self.distance[r] = i+1+request_list[i+1:].index(r)
+                else:
+                    self.distance[r] = float('inf')
+            else:
+                self.fault_count += 1
+                d = max(self.distance, key = lambda x : self.distance[x])
+                del self.distance[d]
+                if r in request_list[i+1:]:
+                    self.distance[r] = i+1+request_list[i+1:].index(r)
+                else:
+                    self.distance[r] = float('inf')
+            i += 1
+            
+    def reset_cache_size(self,n):
+        self.__init__(n)
