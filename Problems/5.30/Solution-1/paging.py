@@ -136,6 +136,7 @@ class LRU():
                 self.ll.mtf()
                 break
             elif tag == 0:
+                self.fault_count += 1
                 self.ll.set_cur(request)
                 self.ll.mtf()
                 done = True
@@ -169,6 +170,7 @@ class FIFO():
                 done = True
                 break
             elif tag == 0:
+                self.fault_count += 1
                 self.ll.set_cur(request)
                 self.ll.mtf()
                 done = True
@@ -202,6 +204,7 @@ class LIFO():
                 done = True
                 break
             elif tag == 0:
+                self.fault_count += 1
                 self.ll.set_cur(request)
                 done = True
                 break
@@ -226,7 +229,10 @@ class LFU():
         self.size = cache_size
     
     def process(self,request):
-        if request in self.count or len(self.count) < self.size:
+        if request in self.count:
+            self.count[request] += 1
+        elif len(self.count) < self.size:
+            self.fault_count += 1
             self.count[request] += 1
         else:
             lfu = min(self.count, key = lambda x : self.count[x])
@@ -296,6 +302,7 @@ class CLOCK():
                     re.set_tag(0)
                 break
             elif cur.get_tag() == 0:
+                self.fault_count += 1
                 r.set_tag(0)
                 cur.set_tag(request)
                 done = True
@@ -356,6 +363,7 @@ class LFD:
                 else:
                     self.distance[r] = float('inf')
             elif len(self.distance) < self.size:
+                self.fault_count += 1
                 if r in request_list[i+1:]:
                     self.distance[r] = i+1+request_list[i+1:].index(r)
                 else:
