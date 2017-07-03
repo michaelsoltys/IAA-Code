@@ -1,5 +1,18 @@
-Introduction to the Analysis of Algorithms (3rd ed)
-Michael Soltys
+### An Introduction to the Analysis of Algorithms 
+#### 3rd edition
+#### Michael Soltys
 
-This repository contains sample solutions for many problems in the text,
-along with implementations many of the algorithms discussed.
+#### Book's web page:
+http://www.msoltys.com/book
+
+#### This repository:
+
+This repository contains Python solutions to (almost) all the
+programming problems in the book:
+
+https://github.com/michaelsoltys/IAA/tree/master/Problems
+
+as well as Python implementations of (almost) all the Algorithms in
+the book:
+
+https://github.com/michaelsoltys/IAA/tree/master/Algorithms
