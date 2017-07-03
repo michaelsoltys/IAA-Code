@@ -9,20 +9,27 @@ from random import choice
 from copy import copy
 import sys
 
-def RabinMiller(n,iterations=20):
+'''If the message "the impossible has happened" is printed, output is negative
+due to issues with integer size, and resulting negative may be false.'''
+
+def RabinMiller(n,iterations=20,display=False):
     if n == 2:
-        print(n,'IS prime.')
+        if display:
+            print(n,'IS prime.')
         return True
     if n%2 == 0:
-        print(n,'is NOT prime.')
+        if display:
+            print(n,'is NOT prime.')
         return False
     i = 0
     while i < iterations:
         if not RabinMillerCore(n):
-            print(n,'is NOT prime.')
+            if display:
+                print(n,'is NOT prime.')
             return False
         i += 1
-    print(n,'IS prime.')
+    if display:
+        print(n,'IS prime.')
     return True
     
 def RabinMillerCore(n):
@@ -40,16 +47,15 @@ def RabinMillerCore(n):
     if x==1 or x == n-1:
         return True
     i = 0
-    last = 0
     while i < h:
-        last = copy(x)
         x = exp(x,2,n)
         if x == 1:
-            if last == n-1:
-                return True
-            else:
-                return False
+            return False
+        if x == n-1:
+            return True
         i += 1
+    if x == n-1:
+        return True
     print('The impossible has happened...')
     return False
     
@@ -71,13 +77,15 @@ def exp(a,n,m):#a^n mod m (a^n if m==0)
         i += 1
     return output
 
-if __name__ == '__main__':
+'''if __name__ == '__main__':
     n = len(sys.argv)
     if n < 2:
         raise TypeError('Rabin-Miller requires a postive integer input.')
     elif n > 3:
         raise TypeError('Got 3 inputs for Rabin-Miller. Expected at most 2.')
     elif n==3:
-        RabinMiller(int(sys.argv[1]),int(sys.argv[2]))
+        RabinMiller(int(sys.argv[1]),int(sys.argv[2]),display=True)
     else:
-        RabinMiller(int(sys.argv[1]))
+        RabinMiller(int(sys.argv[1]),display=True)'''
+
+print(RabinMiller(191))
