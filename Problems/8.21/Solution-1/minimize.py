@@ -6,8 +6,11 @@
 ## python 3.5.2
 
 import sys
+from collections import deque
 
-#recursive for equivalence; l is list of rows, split by commas
+#------------------------------------Lazy (but more readable) Recursive Version
+
+#recursive for equivalence; l is list of rows, split by commas, from input text
 def iseq(a,b,l,d=0):#d is depth, limited to number of states
     A = l[a]
     B = l[b]
@@ -57,9 +60,100 @@ def minimize(input_text_name):
         print('   '+s)
         file.write(s+'\n')
     file.close()
+    
+#----------------------------------------------------Better Stack-based Version
+def dfa_min(input_text_name,output_text_name=''):
+    file = open('input.txt','r')
+    lines = [line.split(',') for line in file.readlines() if line]
+    file.close()
+    n = len(lines)
+    f0 = {}
+    f1 = {}
+    r0 = {i:set() for i in range(n)}
+    r1 = {i:set() for i in range(n)}
+    table = {i:{j:'o' for j in range(i+1,n)} for i in range(n-1)}
+    queue = deque()
+    i = 0
+    while i < n-1:
+        a = int(lines[i][1])
+        b = int(lines[i][2])
+        f0[i] = a
+        f1[i] = b
+        r0[a].add(i)
+        r1[b].add(i)
+        j = i+1
+        while j < n:
+            if lines[i][0]!=lines[j][0]:
+                queue.append((i,j))
+                table[i][j] = 'x'
+            j += 1
+        i += 1
+    a = int(lines[n-1][1])
+    b = int(lines[n-1][2])
+    f0[n-1] = a
+    f1[n-1] = b
+    r0[a].add(n-1)
+    r1[b].add(n-1)
+    done = set()
+    while queue:
+        i,j = queue.popleft()
+        if not (i,j) in done:
+            done.add((i,j))
+            for c in r0[i]:
+                for l in r0[j]:
+                    k = c
+                    if k > l:
+                        k,l = l,k
+                    if table[k][l] == 'o':
+                        table[k][l] = 'x'
+                        queue.append((k,l))
+            for c in r1[i]:
+                for l in r1[j]:
+                    k = c
+                    if k > l:
+                        k,l = l,k
+                    if table[k][l] == 'o':
+                        table[k][l] = 'x'
+                        queue.append((k,l))
+    assignments = {}
+    groups = []
+    i = 0
+    while i < n:
+        if not i in assignments:
+            group = {i}
+            assignments[i] = group
+            j = i+1
+            while j < n:
+                if table[i][j] == 'o':
+                    assignments[j] = group
+                    group.add(j)
+                j += 1
+            groups.append(group)
+        i += 1
+    new_lines = []
+    i = 0
+    while i < len(groups):
+        nl = []
+        j = next(iter(groups[i]))
+        nl.append(lines[j][0])
+        nl.append(groups.index(assignments[f0[j]]))
+        nl.append(groups.index(assignments[f1[j]]))
+        new_lines.append(','.join([str(x) for x in nl]))
+        i += 1
+    if output_text_name == '':
+        ext = input_text_name.index('.')
+        output_text_name = 'output_of_'+input_text_name[:ext]+'.txt'
+    file = open(output_text_name,'w')
+    for line in new_lines:
+        file.write(line+'\n')
+        print('   ',line)
+
+#--------------------------------------------------------------------------Main
 
 if __name__ == '__main__':
     if len(sys.argv)==2:
-        minimize(sys.argv[1])
+        dfa_min(sys.argv[1])
+    elif len(sys.argv)==3:
+        dfa_min(sys.argv[1],sys.argv[2])
     else:
-        print('minimize.py expected 1 additional arguement.',len(sys.argv)-1,'given.')
+        print('minimize.py expected 1-2 additional arguements.',len(sys.argv)-1,'given.')

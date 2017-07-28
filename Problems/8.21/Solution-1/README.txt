@@ -8,9 +8,10 @@ matching figure 8.10*, where rows represent states in alphabetical
 order.
 
 Call in command line:
-	python minimize.py input.txt
+	python minimize.py input.txt output.txt
 
 Output is formatted the same as the input. It is printed in the
-console and written to the file "output_of_<input_filename>.txt".
+console and written to the designated file. If no output file is
+named, the result is written to "./output_of_<input_filename>.txt".
 
 * fig:dfa-to-table
