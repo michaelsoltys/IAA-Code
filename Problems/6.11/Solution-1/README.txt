@@ -1,5 +1,5 @@
 Implementation of the Rabin-Miller primality test
-Solution to Problem 1.10
+Solution to Problem 6.11
 Author: Ryan McIntyre
 
 For the naive version, Algorithm 6.3. Here we implement the
@@ -15,6 +15,6 @@ sample call:
 	python rm.py 1001111111111
 
 Note that this verion is slower than the naive version,
-but the naive version has a of integers for which it
+but the naive version has a lot of integers for which it
 executes, but outputs a false negative with the message
-"the impossible has happend".
+"the impossible has happened".

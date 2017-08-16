@@ -13,9 +13,9 @@ def euc(m,n):
     else:
         (d,x,y) = euc(n,m%n)
         return (d,y,x-int(m/n)*y)
-#wow, 5 lines!
+#5 lines :)
 
-#5 line main loop please? no?
+#5 line main loop please? no? no :(
 if __name__ == '__main__':
     if len(sys.argv) == 1:
         while True:

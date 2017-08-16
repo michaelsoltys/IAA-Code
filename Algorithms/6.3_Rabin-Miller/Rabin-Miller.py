@@ -77,7 +77,7 @@ def exp(a,n,m):#a^n mod m (a^n if m==0)
         i += 1
     return output
 
-'''if __name__ == '__main__':
+if __name__ == '__main__':
     n = len(sys.argv)
     if n < 2:
         raise TypeError('Rabin-Miller requires a postive integer input.')
@@ -86,6 +86,4 @@ def exp(a,n,m):#a^n mod m (a^n if m==0)
     elif n==3:
         RabinMiller(int(sys.argv[1]),int(sys.argv[2]),display=True)
     else:
-        RabinMiller(int(sys.argv[1]),display=True)'''
-
-print(RabinMiller(191))
+        RabinMiller(int(sys.argv[1]),display=True)
