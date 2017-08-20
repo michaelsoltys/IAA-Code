@@ -364,7 +364,7 @@ class route:
                 elif args[1] in self.like['nt']:
                     self.add_nt(args[2])
                 else:
-                    print('\nInvalid arguement',args[1],'for "add".\n')
+                    print('\nInvalid arguement "'+str(args[1])+'" for "add".\n')
             else:
                 print('\n"add" takes 2 additional arguements.',len(args)-1,'given.\n' )
 
@@ -375,7 +375,7 @@ class route:
                 elif args[1] in self.like['nt']:
                     self.del_nt(args[2])
                 else:
-                    print('\nInvalid arguement',args[1],'for "del".\n')
+                    print('\nInvalid arguement "'+str(args[1]),'" for "del".\n')
             else:
                 print('\n"del" take 2 additional arguements.',len(args)-1,'given.\n')
         
@@ -403,17 +403,18 @@ class route:
             if len(args) == 2:
                 self.load(args[1])
             else:
-                print('\nExpected 1 additional arguement for "load".',len(args)-1,'given.\n')
+                print('\nExpected a saved name to "load".',
+                      'Try "load <name>",\n or "save list" to see a list of saves\' names.')
         else:
-            print('\nInvalid arguement',args[0],'\n')
+            print('\nInvalid arguement "'+str(args[0])+'"')
     
     def save(self,name=None):
         if name == None:
             name = self.cur_save
         if name == None:
             print('\nThis one hasn\'t been saved before, so it requires a name.',
-                  '\nTry "save <name>"\n')
-        if name in self.like['list']:
+                  '\nTry "save <name>"')
+        elif name in self.like['list']:
             L = os.listdir('saves/')
             L = [l for l in L if len(l)>5]
             L = [l[:-5] for l in L if l[-5:]=='.save']
@@ -422,9 +423,9 @@ class route:
                 print('   ',l)
             print(' ')
         elif name == self.cur_save:
-            path = 'saves/'+name+'.save'
+            path = 'saves/'+str(name)+'.save'
             while True:
-                inp = input('\nOverwrite save "'+name+'"?','\n... ')
+                inp = input('\nOverwrite save "'+name+'"?'+'\n... ')
                 if inp in self.like['yes']:
                     file = open(path,'w')
                     file.write(str(self.rt))
@@ -507,7 +508,7 @@ class route:
 if __name__ == '__main__':
     D = route()
     while True:
-        inp = input('Input a command or type "quit" to quit.\n... ')
+        inp = input('\nInput a command or type "quit" to quit.\n... ')
         args = [arg.replace(' ','') for arg in inp.split(' ') if arg]
         if args[0] in D.like['quit']:
             break
