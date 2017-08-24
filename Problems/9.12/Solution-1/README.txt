@@ -1,4 +1,4 @@
-Solution to Problem 29.12 
+Solution to Problem 9.12 
 Finds infix, prefix or postfix of binary tree given other two.
 Author: Ryan McIntyre
 
