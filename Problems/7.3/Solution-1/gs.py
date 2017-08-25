@@ -17,7 +17,7 @@ def dot(X,Y):
         sum += x*y
     return sum
 
-def norm(X):
+def norm(X): #actually norm squared...
     return dot(X,X)
 
 def mult(s,X):
