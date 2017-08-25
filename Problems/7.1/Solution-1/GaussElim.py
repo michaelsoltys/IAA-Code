@@ -58,9 +58,7 @@ def gauss(input_matrix):
     if all(v==0 for v in V): # if we have the 0 matrix...
         return Id(n)
     
-    T = M.transpose() # for easily indexing columns
-    MA = M.getA() # matrix.getA returns array version of matrix
-    TA = T.getA()
+    TA = M.transpose().getA() # for easily indexing columns
     
     if all(v==0 for v in TA[0]): #if first column is 0...
         j = 1
@@ -114,6 +112,7 @@ def gauss(input_matrix):
     X = insert(X,0,0,axis=1)
     X = insert(X,0,Xt,axis=0)
     return X
+    
 
 if __name__=='__main__':
     if len(sys.argv)==2:
