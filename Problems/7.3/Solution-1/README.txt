@@ -4,7 +4,8 @@ Author: Ryan McIntyre
 
 Input is given in the command line as a file containing a basis. This
 basis is a semicolon-separated list of vectors, with the values within
-vectors separated by commas. An example is provided in input.txt.
+vectors separated by commas. New lines and blank spaces are ignored.
+An example is provided in input.txt.
 
 	python gs.py input.txt
 

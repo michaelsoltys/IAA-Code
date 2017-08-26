@@ -1,4 +1,4 @@
-Csanky (recursion version)
+Csanky (matrix version)
 Finds characteristic polynomial of a square matrix
 Author: Ryan McIntyre
 

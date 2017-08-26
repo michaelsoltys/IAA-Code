@@ -1,6 +1,6 @@
 # Introduction to the Analysis of Algorithms (3rd ed)
 # Michael Soltys
-## Problem 7.5 - Csanky (characteristic polynomial)
+## Problem 7.5 - Csanky (characteristic polynomial) via Newton's symmetric...
 ## Ryan McIntyre
 ## 8/25/2017
 ## python 3.5.2
@@ -61,7 +61,7 @@ if __name__=='__main__':
         file = open(sys.argv[1],'r')
         A = matrix(file.read().replace('\n','').replace(' ',''))
         file.close()
-        print('   Characteristic polynomial:')
-        print('     '+csanky(A))
+        print('Characteristic polynomial:')
+        print('   '+csanky(A))
     else:
         print('csanky.py expected 1 additional arguement.',len(sys.argv)-1,'given.')
