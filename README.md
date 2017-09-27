@@ -16,3 +16,9 @@ as well as Python implementations of (almost) all the Algorithms in
 the book:
 
 https://github.com/michaelsoltys/IAA-Code/tree/master/Algorithms
+
+#### Sept 27, 2017
+
+Changed repo to 
+
+https://github.com/michaelsoltys/IAA-Code
