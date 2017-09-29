@@ -6,7 +6,7 @@
 http://www.msoltys.com/book
 
 #### This repository:
-http://www.msoltys.com/book-code
+http://www.msoltys.com/book-code &rarr; https://github.com/michaelsoltys/IAA-Code
 
 This repository contains Python solutions to (almost) all the
 programming problems in the book:
