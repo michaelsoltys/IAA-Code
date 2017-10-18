@@ -84,8 +84,8 @@ class Savitch(object):
 if __name__ == '__main__':
     if len(sys.argv) == 1:
         while True:
-            inp = input('Enter the location of the adjacency matrix and'+
-                        'two integer indices of vertices, for Savitch\'s\n...')
+            inp = input('Enter the location of the adjacency matrix and '+
+                        'two integer indices of vertices, for Savitch\'s\n... ')
             args = [x.replace(' ','') for x in inp.split(' ') if x]
             if args[0] in ['q','Q','quit','Quit','QUIT']:
                 break
