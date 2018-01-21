@@ -3,7 +3,7 @@ package euclids_test
 import (
 	"testing"
 
-	"github.com/crhntr/alg/euclids"
+	euclids "github.com/crhntr/IAA-Code/Algorithms/1.2_Euclid-GCF"
 )
 
 func TestAlg(t *testing.T) {
