@@ -14,7 +14,7 @@ func Alg(x, y int) (int, int) {
 	return q, r
 }
 
-func VerboseAlg(x, y int) (int, int) {
+func Verbose(x, y int) (int, int) {
 	q, r := 0, x
 	fmt.Printf("Precondition: x≥0 AND y≥0: %t\n", x >= 0 && y >= 0)
 

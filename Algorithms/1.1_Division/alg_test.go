@@ -37,7 +37,7 @@ func benchmarkDiv(x, y int, b *testing.B) {
 }
 
 func ExampleAlg() {
-	division.VerboseAlg(13, 3)
+	division.Verbose(13, 3)
 
 	// Output: Precondition: x≥0 AND y≥0: true
 	// x: 13  y: 3   r: 13  q: 0     Loop Invariant: x = (q*y) + r ⋏ r ≥ 0: true
