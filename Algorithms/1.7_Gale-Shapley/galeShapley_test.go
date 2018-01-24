@@ -5,7 +5,7 @@ import (
 )
 
 func TestAlg00(t *testing.T) {
-	people, err := LoadPeopleFromFile("testdata/set00.json")
+	people, err := LoadPeopleFromFile("testdata/people00.json")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -21,7 +21,7 @@ func TestAlg00(t *testing.T) {
 }
 
 func TestAlg01(t *testing.T) {
-	people, err := LoadPeopleFromFile("testdata/set01.json")
+	people, err := LoadPeopleFromFile("testdata/people01.json")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -37,7 +37,7 @@ func TestAlg01(t *testing.T) {
 }
 
 func TestAlg02(t *testing.T) {
-	people, err := LoadPeopleFromFile("testdata/set02.json")
+	people, err := LoadPeopleFromFile("testdata/people02.json")
 	if err != nil {
 		t.Fatal(err)
 	}
