@@ -6,26 +6,30 @@ import (
 	"os"
 )
 
-func LoadPeopleFromFile(filename string) ([]Person, error) {
+func LoadPeopleFromFile(filename string) ([]Person, []Person, error) {
 	file := struct {
 		People []Person `json:"people"`
 	}{}
 
+	var (
+		males, females []Person
+	)
+
 	f, err := os.Open(filename)
 	if err != nil {
-		return file.People, err
+		return males, females, err
 	}
 
 	err = json.NewDecoder(f).Decode(&file)
 	if err != nil {
-		return file.People, err
+		return males, females, err
 	}
 
 	for personIndex, person := range file.People {
 	nextPreference:
 		for preferenceIndex, preference := range person.Preferences {
 			if person.Name == preference {
-				return file.People, fmt.Errorf("person %s cannot prefer themeselves (preferences: %d)", person.Name, preferenceIndex)
+				return males, females, fmt.Errorf("person %s cannot prefer themeselves (preferences: %d)", person.Name, preferenceIndex)
 			}
 
 			for i, p := range file.People {
@@ -33,20 +37,16 @@ func LoadPeopleFromFile(filename string) ([]Person, error) {
 					continue nextPreference
 				}
 			}
-			return file.People, fmt.Errorf("%s has an unknown person named %s in their preference list", person.Name, preference)
+			return males, females, fmt.Errorf("%s has an unknown person named %s in their preference list", person.Name, preference)
 		}
 	}
 
-	return file.People, nil
-}
-
-func SortPeopleByGender(people []Person) (males, females []Person) {
-	for _, person := range people {
+	for _, person := range file.People {
 		if person.Male {
 			males = append(males, person)
 		} else {
 			females = append(females, person)
 		}
 	}
-	return
+	return males, females, nil
 }
