@@ -1,4 +1,4 @@
-package stablemarriage
+package galeshapley
 
 import (
 	"testing"

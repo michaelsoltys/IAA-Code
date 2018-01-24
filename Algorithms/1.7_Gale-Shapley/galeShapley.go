@@ -1,9 +1,6 @@
-package stablemarriage
+package galeshapley
 
 import (
-	"encoding/json"
-	"fmt"
-	"os"
 	"strings"
 )
 
@@ -91,7 +88,7 @@ func (person *Person) GetPreferedMatch(people []Person) int {
 	}
 
 	if len(person.Preferences) > 1 {
-		person.Preferences = person.Preferences[1:]
+		person.Preferences = person.Preferences[1:] // shortens preference list
 	}
 	return preferenceIndex
 }
@@ -107,49 +104,4 @@ func SinglesExist(people []Person) bool {
 
 func match(person1, person2 *Person) {
 	person1.Match, person2.Match = person2, person1
-}
-
-func SortPeopleByGender(people []Person) (males, females []Person) {
-	for _, person := range people {
-		if person.Male {
-			males = append(males, person)
-		} else {
-			females = append(females, person)
-		}
-	}
-	return
-}
-
-func LoadPeopleFromFile(filename string) ([]Person, error) {
-	file := struct {
-		People []Person `json:"people"`
-	}{}
-
-	f, err := os.Open(filename)
-	if err != nil {
-		return file.People, err
-	}
-
-	err = json.NewDecoder(f).Decode(&file)
-	if err != nil {
-		return file.People, err
-	}
-
-	for personIndex, person := range file.People {
-	nextPreference:
-		for preferenceIndex, preference := range person.Preferences {
-			if person.Name == preference {
-				return file.People, fmt.Errorf("person %s cannot prefer themeselves (preferences: %d)", person.Name, preferenceIndex)
-			}
-
-			for i, p := range file.People {
-				if i != personIndex && p.Name == preference {
-					continue nextPreference
-				}
-			}
-			return file.People, fmt.Errorf("%s has an unknown person named %s in their preference list", person.Name, preference)
-		}
-	}
-
-	return file.People, nil
 }
