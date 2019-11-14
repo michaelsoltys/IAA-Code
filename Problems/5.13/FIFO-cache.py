@@ -9,7 +9,7 @@ def FIFO_cache(stream, cache_size):
     """
     :param stream:
     :param cache_size:
-    For simplicity, we use an array as our input, index shows the order of a input stream,
+    For simplicity, we use an array as our input, index shows the order of an input stream,
     Each iteration prints out cache information
     """
     cache = []
