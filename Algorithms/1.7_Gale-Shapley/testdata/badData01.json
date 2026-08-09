@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "name": "Am",
+      "male": true,
+      "preferences": ["Am", "Bf"]
+    }, {
+      "name": "Bm",
+      "male": true,
+      "preferences": ["Bf", "Af"]
+    },
+    {
+      "name": "Af",
+      "male": false,
+      "preferences": ["Am", "Bm"]
+    }, {
+      "name": "Bf",
+      "male": false,
+      "preferences": ["Bm", "Am"]
+    }
+  ]
+}

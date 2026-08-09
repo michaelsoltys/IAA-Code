@@ -1,0 +1,30 @@
+{
+  "people": [
+    {
+      "name": "Am",
+      "male": true,
+      "preferences": ["Af", "Bf", "Cf"]
+    }, {
+      "name": "Bm",
+      "male": true,
+      "preferences": ["Bf", "Cf", "Af"]
+    }, {
+      "name": "Cm",
+      "male": true,
+      "preferences": ["Bf", "Af", "Cf"]
+    },
+    {
+      "name": "Af",
+      "male": false,
+      "preferences": [ "Cm", "Am", "Bm"]
+    }, {
+      "name": "Bf",
+      "male": false,
+      "preferences": ["Bm",  "Cm", "Am"]
+    }, {
+      "name": "Cf",
+      "male": false,
+      "preferences": ["Bm", "Cm","Am"]
+    }
+  ]
+}

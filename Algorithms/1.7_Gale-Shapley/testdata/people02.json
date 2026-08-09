@@ -1,0 +1,45 @@
+{
+  "people": [
+    {
+      "name": "John",
+      "male": true,
+      "preferences": ["Stephanie", "Roxanne", "Jenny", "Maria", "Sarah"]
+    }, {
+      "name": "Michael",
+      "male": true,
+      "preferences": ["Stephanie", "Jenny", "Roxanne", "Maria", "Sarah"]
+    }, {
+      "name": "Matthew",
+      "male": true,
+      "preferences": ["Maria", "Stephanie", "Jenny", "Sarah", "Roxanne"]
+    }, {
+      "name": "Ryan",
+      "male": true,
+      "preferences": ["Maria", "Jenny", "Stephanie", "Sarah", "Roxanne"]
+    }, {
+      "name": "Andrew",
+      "male": true,
+      "preferences": ["Roxanne", "Maria", "Jenny", "Stephanie", "Sarah"]
+    }, {
+      "name": "Stephanie",
+      "male": false,
+      "preferences": ["Michael", "John", "Matthew", "Ryan", "Andrew"]
+    }, {
+      "name": "Roxanne",
+      "male": false,
+      "preferences": ["Michael", "John", "Matthew", "Ryan", "Andrew"]
+    }, {
+      "name": "Jenny",
+      "male": false,
+      "preferences": ["Michael", "Matthew", "John", "Ryan",  "Andrew"]
+    }, {
+      "name": "Maria",
+      "male": false,
+      "preferences": ["Michael", "Ryan", "Matthew", "John", "Andrew"]
+    }, {
+      "name": "Sarah",
+      "male": false,
+      "preferences": ["Matthew", "Michael", "Ryan", "John", "Andrew"]
+    }
+  ]
+}
